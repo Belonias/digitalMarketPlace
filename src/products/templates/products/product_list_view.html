@@ -1,4 +1,9 @@
-<h1>Product List View</h1>
+{% extends "base.html" %}
+
+{% block style %}
+{% endblock style %}
+
+
 
 {% for product in product_list %}
 <h1>{{ product }}--{{ product.price }}</h1>
