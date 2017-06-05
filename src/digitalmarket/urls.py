@@ -21,5 +21,5 @@ from products.views import detail_view, list_view
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', list_view, name='list_view'),
-    url(r'^detail/$', detail_view, name='detail_view'),
+    url(r'^detail/(?P<object_id>\d+)/$', detail_view, name='detail_view'),
 ]
