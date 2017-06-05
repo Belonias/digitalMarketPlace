@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from products.views import detail_view, list_view
+from products.views import detail_view, list_view, detail_slug_view
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', list_view, name='list_view'),
     url(r'^detail/(?P<object_id>\d+)/$', detail_view, name='detail_view'),
+    url(r'^detail/(?P<slug>[\w-]+)/$', detail_slug_view, name='detail_slug_view'),
 ]
