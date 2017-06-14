@@ -1,7 +1,27 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from .models import Product
+from .forms import ProductForm
 # Create your views here.
+
+def create_view(request):
+    form = ProductForm(request.POST or None)
+    if form.is_valid():
+        print(form.cleaned_data)
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
+        price = form.cleaned_data['price']
+        new_obj = Product()
+        new_obj.title = title
+        new_obj.description = description
+        new_obj.price = price
+        new_obj.save()
+    template = 'products/create_view.html'
+    context = {
+        # 'object': product,
+        'form': form,
+    }
+    return render(request, template, context)
 
 def detail_slug_view(request, slug=None):
     if slug is not None:
