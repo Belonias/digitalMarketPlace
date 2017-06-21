@@ -47,6 +47,7 @@ class ProductForm(forms.Form):
 
 
 class ProductModelForm(forms.ModelForm):
+    publish = forms.ChoiceField(choices=PUBLISH_CHOICES, required=False)
     class Meta:
         model = Product
         fields = [
@@ -54,3 +55,10 @@ class ProductModelForm(forms.ModelForm):
             'description',
             'price'
         ]
+        widgets = {
+            'description': forms.Textarea(
+                attrs = {
+                    'placeholder':'description notes'
+                }
+            )
+        }

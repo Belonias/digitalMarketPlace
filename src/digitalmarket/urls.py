@@ -20,7 +20,8 @@ from products.views import (
         detail_view,
         list_view,
         detail_slug_view,
-        create_view
+        create_view,
+        update_view
         )
 
 urlpatterns = [
@@ -28,5 +29,6 @@ urlpatterns = [
     url(r'^$', list_view, name='list_view'),
     url(r'^create/$', create_view, name='create_view'),
     url(r'^detail/(?P<object_id>\d+)/$', detail_view, name='detail_view'),
+    url(r'^detail/(?P<object_id>\d+)/update/$', update_view, name='update_view'),
     url(r'^detail/(?P<slug>[\w-]+)/$', detail_slug_view, name='detail_slug_view'),
 ]

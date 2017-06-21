@@ -4,6 +4,20 @@ from .models import Product
 from .forms import ProductForm, ProductModelForm
 # Create your views here.
 
+def update_view(request, object_id=None):
+    product = get_object_or_404(Product, id=object_id)
+    form = ProductModelForm(request.POST or None, instance=product)
+    if form.is_valid():
+        form.save(commit=False)
+        form.save()
+    context = {
+        'object': product,
+        'form': form,
+    }
+    # edit for update view
+    template = 'products/create_view.html'
+    return render(request, template, context)
+
 def create_view(request):
     form = ProductModelForm(request.POST or None)
     if form.is_valid():
