@@ -8,7 +8,13 @@ PUBLISH_CHOICES = (
 
 class ProductForm(forms.Form):
     title = forms.CharField()
-    description = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea(
+        attrs = {
+            'class': 'custom-class',
+            'placeholder': 'description',
+            
+        }
+    ))
     price = forms.DecimalField()
     publish = forms.ChoiceField(choices=PUBLISH_CHOICES, required=False)
     # class Meta:
