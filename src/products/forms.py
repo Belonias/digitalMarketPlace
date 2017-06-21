@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Product
+
 PUBLISH_CHOICES = (
     ('', ''),
     ('publish', 'Publish'),
@@ -12,7 +14,7 @@ class ProductForm(forms.Form):
         attrs = {
             'class': 'custom-class',
             'placeholder': 'description',
-            
+
         }
     ))
     price = forms.DecimalField()
@@ -39,3 +41,16 @@ class ProductForm(forms.Form):
             raise forms.ValidationError('Title too small')
         else:
             return title
+
+
+
+
+
+class ProductModelForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = [
+            'title',
+            'description',
+            'price'
+        ]
