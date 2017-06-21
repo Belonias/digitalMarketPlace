@@ -1,9 +1,16 @@
 from django import forms
 
+PUBLISH_CHOICES = (
+    ('', ''),
+    ('publish', 'Publish'),
+    ('draft', 'Draft'),
+)
+
 class ProductForm(forms.Form):
     title = forms.CharField()
-    description = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
     price = forms.DecimalField()
+    publish = forms.ChoiceField(choices=PUBLISH_CHOICES, required=False)
     # class Meta:
     #     fields = [
     #         'title',
