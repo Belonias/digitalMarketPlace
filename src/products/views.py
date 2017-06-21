@@ -15,7 +15,7 @@ def update_view(request, object_id=None):
         'form': form,
     }
     # edit for update view
-    template = 'products/create_view.html'
+    template = 'products/update_view.html'
     return render(request, template, context)
 
 def create_view(request):
