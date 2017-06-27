@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+{% for object in object_list %}
+<h1>{{ object }}--{{ object.price }}---{{ object.slug }}</h1>
+{% endfor %}
+{% endblock content %}

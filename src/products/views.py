@@ -2,7 +2,36 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from .models import Product
 from .forms import ProductForm, ProductModelForm
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 # Create your views here.
+
+class ProductListView(ListView):
+    model = Product
+
+class ProductDetailView(DetailView):
+    model = Product
+
+    def get_object(self, *args, **kwargs):
+        print(self.kwargs)  # related to request
+        ModelClass = self.model
+        slug = self.kwargs.get('slug')
+        if slug is not None:
+            try:
+                obj = get_object_or_404(ModelClass, slug=slug)
+            except ModelClass.MultipleObjectsReturned:
+                obj = ModelClass.objects.filter(slug=slug).order_by('-sale_price').first()
+        else:
+            obj = super(ProductDetailView, self).get_object(*args, **kwargs)
+        return obj
+
+class ProductCreateView(CreateView):
+    pass
 
 def update_view(request, object_id=None):
     product = get_object_or_404(Product, id=object_id)

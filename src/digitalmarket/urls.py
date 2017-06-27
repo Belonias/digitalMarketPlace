@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^detail/(?P<object_id>\d+)/$', detail_view, name='detail_view'),
     url(r'^detail/(?P<object_id>\d+)/update/$', update_view, name='update_view'),
     url(r'^detail/(?P<slug>[\w-]+)/$', detail_slug_view, name='detail_slug_view'),
+    url(r'^products/', include('products.urls', namespace='products')),
 ]
